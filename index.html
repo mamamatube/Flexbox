@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div>
+      <a href="/Users/mastudo/Desktop/webデザ/Lesson/HTML/HTML.html">HTML編</a>
+      <a href="/Users/mastudo/Desktop/webデザ/Lesson/CSS basic/CSS basic.html">CSS基本編</a>
+      <a href="/Users/mastudo/Desktop/webデザ/Lesson/CSS Advanced/CSS advanced.html">CSS応用編</a>
+      <a href="/Users/mastudo/Desktop/webデザ/Lesson/CSS Selectors/selectors.html">Selectors編</a>
+    </div>
+    <div>
+      <p>Flexbox編</p>
+      <a href="/Users/mastudo/Desktop/webデザ/Lesson/CSS MediaQueries/MediaQueries.html">MediaQueries編</a>
+      <a href="/Users/mastudo/Desktop/webデザ/Lesson/CSS Animation/Animation.html">Animation編</a>
+      <a href="/Users/mastudo/Desktop/webデザ/Lesson/CSS Nesting/Nesting.html">Nesting編</a>
+      <a href="/Users/mastudo/Desktop/webデザ/Lesson/CSS Grid/inndex.html">Grid編</a>
+    </div>
+  </header>
+  <a href="/Users/mastudo/Desktop/webデザ/Lesson/index.html" class="a-lesson">←Lesson</a>
+  <a class="a-top" href="#">↑TOP</a>
+  <main>
+    <h1>フレックスボックス</h1>
+    <section>
+      <h2>概要</h2>
+      <p>ある要素の中で、要素を並べ方を変えたり、間に余白を入れたり、指定した比率で要素を配置するためのレイアウト手法</p>
+    </section>
+    <section>
+      <h2>用語</h2>
+      <dl>
+        <dt>フレックスコンテナ</dt>
+        <dd>
+          フレックスボックスの大枠となる要素。<br>主軸と交差軸という軸が設定され、主軸はデフォルトでは左から右、交差軸はそれに直行するように設定されている。<br>フレックスコンテナに設定した要素の子要素はこの主軸に沿って並べられる。
+        </dd>
+        <dt>フレックスアイテム</dt>
+        <dd>フレックスコンテナ内で並べられる子要素。</dd>
+      </dl>
+    </section>
+    <section>
+      <h2>プロパティ</h2>
+      <table class="flex-name">
+        <tr>
+          <th>用語</th>
+          <th>説明</th>
+        </tr>
+        <tr>
+          <td><code>display:flex;</code></td>
+          <td>要素をフレックスコンテナとして設定するためのプロパティ/値。</td>
+        </tr>
+        <tr>
+          <td><code>display:inline-flex;</code></td>
+          <td>
+            <code>inline-block</code>のように、フレックスコンテナを横並びに配置できる右ようにするための値。<br><code>display:flex;</code>の幅がブロックボックスのデフォルトである「100%」なのと同じく、<br><code>display:inline-flex;</code>の幅は、インラインボックスのデフォルトである「中に入っている要素の幅」となる。
+          </td>
+        </tr>
+        <tr>
+          <td><code>flex-direction</code></td>
+          <td>主軸の方向を決めるためのプロパティ。<table>
+              <tr>
+                <td><code>flex-direction:row;</code></td>
+                <td>初期値。左から右に設定される。</td>
+              </tr>
+              <tr>
+                <td><code>flex-direction:row-reverse;</code></td>
+                <td>初期値の反対で、右から左に設定される。</td>
+              </tr>
+              <tr>
+                <td><code>flex-direction:column;</code></td>
+                <td>初期値から90度回転。上から下に設定される。</td>
+              </tr>
+              <tr>
+                <td><code>flex-direction:column-reverse;</code></td>
+                <td><code>column</code>の反対。下から上に設定される。</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td><code>justify-content</code></td>
+          <td>主軸方向で要素をどう揃えるかを指定するプロパティ<table>
+              <tr>
+                <td><code>justify-content:flex-start;</code></td>
+                <td>主軸の開始地点に要素をそろえる。</td>
+              </tr>
+              <tr>
+                <td><code>justify-content:center;</code></td>
+                <td>主軸に対して中央に揃える。</td>
+              </tr>
+              <tr>
+                <td><code>justify-content:flex-end;</code></td>
+                <td>主軸の終了地点に揃える。</td>
+              </tr>
+              <tr>
+                <td><code>justify-content:space-between;</code></td>
+                <td>主軸の開始地点から終了地点まで、<br>要素の余白が等間隔になるように配置する。</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td><code>align-items</code></td>
+          <td>
+            交差軸方向にどう揃えるかを決めるプロパティ。<br><code>justify-cotent</code>と同じように<code>:flex-start;</code>、<code>center</code>、<code>:flex-end;</code>の値がある。
+          </td>
+        </tr>
+        <tr>
+          <td><code>flex-wrap</code></td>
+          <td>
+            フレックスアイテムの幅の合計がコンテナの幅を超えた時、どのように配置するかを指定するプロパティ。<br>フレックスボックスは、上記の場合デフォルトでコンテナに収まるようアイテムが縮む仕様となっている。<br>これを<code>flex-wrap:wrap;</code>とすることで、アイテムが折り返すように配置される。<br>なお、折り返して複数行になった場合、それぞれが<code>Flex Line</code>と呼ばれる行単位で分割される。
+          </td>
+        </tr>
+        <tr>
+          <td><code>Flex Line</code></td>
+          <td>
+            <code>flex-wrap:wrap;</code>で折り返した時アイテムが複数行になった場合、<br>それぞれが<code>Flex Line</code>と呼ばれる行単位で分割される。<br>上述の<code>justify-content</code>や<code>align-items</code>などのプロパティはこの<code>Flex Line</code>ごとに適用される。
+          </td>
+        </tr>
+        <tr>
+          <td><code>gap</code></td>
+          <td>
+            要素間の隙間を定義できるプロパティ。<br>あくまで"要素と要素の間"の隙間を定義するもののため、<br>コンテナのサイズと綺麗に合わせる場合などには<code>calc()</code>と組み合わせて使用すると便利。
+          </td>
+        </tr>
+        <tr>
+          <td><code>align-self</code></td>
+          <td>
+            <code>aling-items</code>のフレックスアイテム個別指定ver。<br>交差軸方向に対してアイテム個別に対してどう揃えるかを指定するプロパティ。<br>指定する値は<code>align-items</code>と同様に<code>:flex-start;</code>、<code>center</code>、<code>:flex-end;</code>が使われる。<br>なお、主軸に対して個別指定したい場合は<code>margin</code>プロパティで可能。
+          </td>
+        </tr>
+        <tr>
+          <td><code>order</code></td>
+          <td>
+            フレックスアイテムの並び順は、基本的にはHTML上で書いた通りになるが、<br><code>order</code>を使うことで、CSS上のみで並び順を制御できる。<br>初期値は0であり、指定した数字が小さい順に表示される。<br>また、<code>order</code>にはマイナスの値も指定可能。
+          </td>
+        </tr>
+        <tr>
+          <td><code>flex</code></td>
+          <td>
+            フレックスアイテムの幅がコンテナの幅に満たない場合や超えた場合にどうするかを指定するプロパティ。<br>デフォルトの<code>initial</code>では、「広がらないが縮む」という指定をとり、<br><code>auto</code>と指定すると「広がるし縮む」、<code>none</code>の場合は「広がりも縮みもしない」という指定になる。<br>また、１以上の整数値を指定することもできる。<br>挙動は<code>auto</code>と同じだが、<br>複数アイテムのサイズを比率固定で指定したい場合、整数を利用する。
+            <div><br>例)600px幅のコンテナにそれぞれ50px(1)、100px(2)、150px(3)の3つのアイテムがあり、<br>[ 1:2:3
+              ]の比率で指定したいとする<br><code>flex:auto;</code>を指定した場合、余白の300pxを3つのアイテムに対し均等に割り振るため<br>それぞれ150px、200px、250pxとなり比率が一定でなくなる<br>一方、<code>flex</code>に整数を割り振る場合、元のアイテムの比率に関係なく、比率[
+              1:2:3 ]であれば<br>[ 1 ]にしたいアイテムに<code>flex:1;</code>、[ 2 ]のアイテムには<code>flex:2;</code>、[ 3
+              ]には<code>flex:3;</code>と指定することで<br>常に[ 1:2:3 ]の比率で配分される。</div>
+          </td>
+        </tr>
+      </table>
+    </section>
+  </main>
+
+</body>
+
+</html>
